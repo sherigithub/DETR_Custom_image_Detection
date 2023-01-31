@@ -190,12 +190,6 @@ def main(args):
             utils.save_on_master(coco_evaluator.coco_eval["bbox"].eval, output_dir / "eval.pth")
         return
     
-    if args.test:
-        checkpoint = torch.load(args.resume, map_location='cpu')
-        model.load_state_dict(checkpoint['model'])
-        
-        model_test_images(model,args)
-        return 
 
     print("Start training")
     start_time = time.time()
