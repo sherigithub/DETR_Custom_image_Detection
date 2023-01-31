@@ -3,7 +3,6 @@ import torch.utils.data
 import torchvision
 
 from .coco import build as build_coco
-from .Test_on_SIngle_image import test_sample_images
 
 def get_coco_api_from_dataset(dataset):
     for _ in range(10):
@@ -26,7 +25,3 @@ def build_dataset(image_set, args):
         from .coco_panoptic import build as build_coco_panoptic
         return build_coco_panoptic(image_set, args)
     raise ValueError(f'dataset {args.dataset_file} not supported')
-
-def model_test_images(model,args):
-    return test_sample_images(model,args)
-    
