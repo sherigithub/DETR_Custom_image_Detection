@@ -189,7 +189,7 @@ def main(args):
         if args.output_dir:
             utils.save_on_master(coco_evaluator.coco_eval["bbox"].eval, output_dir / "eval.pth")
         return
-    
+
 
     print("Start training")
     start_time = time.time()
