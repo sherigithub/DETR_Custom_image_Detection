@@ -94,6 +94,7 @@ def get_args_parser():
     parser.add_argument('--start_epoch', default=0, type=int, metavar='N',
                         help='start epoch')
     parser.add_argument('--eval', action='store_true')
+    parser.add_argument('--test', action='store_true')
     parser.add_argument('--num_workers', default=2, type=int)
 
     # distributed training parameters
@@ -188,6 +189,7 @@ def main(args):
         if args.output_dir:
             utils.save_on_master(coco_evaluator.coco_eval["bbox"].eval, output_dir / "eval.pth")
         return
+
 
     print("Start training")
     start_time = time.time()
