@@ -3,7 +3,6 @@ import torch.utils.data
 import torchvision
 
 from .coco import build as build_coco
-from .Test_on_SIngle_image import test_sample_images
 
 def get_coco_api_from_dataset(dataset):
     for _ in range(10):
@@ -13,9 +12,6 @@ def get_coco_api_from_dataset(dataset):
             dataset = dataset.dataset
     if isinstance(dataset, torchvision.datasets.CocoDetection):
         return dataset.coco
-
-def model_test_images(model,args):
-    return test_sample_images(model,args)
 
 def build_dataset(image_set, args):
     # if you want to use original dataset filw which original Facebook DETR team worked on this - detection task
