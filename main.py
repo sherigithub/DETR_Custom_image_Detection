@@ -15,7 +15,7 @@ import util.misc as utils
 from datasets import build_dataset, get_coco_api_from_dataset
 from engine import evaluate, train_one_epoch
 from models import build_model
-
+from datasets.Test_on_SIngle_image import test_img_preparation
 
 def get_args_parser():
     parser = argparse.ArgumentParser('Set transformer detector', add_help=False)
@@ -95,6 +95,7 @@ def get_args_parser():
                         help='start epoch')
     parser.add_argument('--eval', action='store_true')
     parser.add_argument('--train',action='store_true')
+    parser.add_argument('--test',action='store_true')
     parser.add_argument('--num_workers', default=2, type=int)
 
     # distributed training parameters
@@ -102,6 +103,8 @@ def get_args_parser():
                         help='number of distributed processes')
     parser.add_argument('--dist_url', default='env://', help='url used to set up distributed training')
     return parser
+
+
 
 def main(args):
     utils.init_distributed_mode(args)
@@ -187,6 +190,11 @@ def main(args):
                                               data_loader_val, base_ds, device, args.output_dir)
         if args.output_dir:
             utils.save_on_master(coco_evaluator.coco_eval["bbox"].eval, output_dir / "eval.pth")
+        return
+    
+    if args.test:
+        tip = test_img_preparation()
+        tip.test_sample_images(model,args)
         return
     
     if args.train:
