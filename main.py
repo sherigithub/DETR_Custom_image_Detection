@@ -190,12 +190,16 @@ def main(args):
                                               data_loader_val, base_ds, device, args.output_dir)
         if args.output_dir:
             utils.save_on_master(coco_evaluator.coco_eval["bbox"].eval, output_dir / "eval.pth")
-        return
+        
     
     if args.test:
+        checkpoint = torch.load(args.resume, map_location='cpu')
+        model.load_state_dict(checkpoint['model'])
+        
         tip = test_img_preparation()
         tip.test_sample_images(model,args)
-        return
+        
+        
     
     if args.train:
         print("Start training")

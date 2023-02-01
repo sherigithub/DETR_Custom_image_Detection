@@ -8,6 +8,8 @@ Created on Sun Jan 29 20:28:56 2023
 
 import json
 import random
+import os
+from pathlib import Path
 
 from PIL import Image
 import matplotlib.pyplot as plt
@@ -67,9 +69,11 @@ class test_img_preparation():
     def test_sample_images(self, model,args):
     
         model.eval()
+        root = Path(args.coco_path)
         
-        fi = open(args.coco_path/"annotations"/'valid_annotations_coco.json')
+        fi = open(root/"annotations"/"valid_annotations_coco.json")
         test_data = json.load(fi)
+        fi.close()
         
         test_imag_pths = test_data['images']
         ln_max = len(test_imag_pths)
