@@ -82,7 +82,7 @@ class test_img_preparation():
     
         for i in rnd_ls:
             im_pth = test_imag_pths[i]['file_name']
-            img_path = args.coco_path/'valid'/im_pth
+            img_path = root/'valid'/im_pth
             im = Image.open(img_path)
                 
             # mean-std normalize the input image (batch-size: 1)
