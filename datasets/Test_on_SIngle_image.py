@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import torch
 
 import torchvision.transforms as T
-torch.set_grad_enabled(False);
+#torch.set_grad_enabled(False);
 
 class test_img_preparation():
     def __init__(self):
