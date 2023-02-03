@@ -193,7 +193,7 @@ def main(args):
         
     
     if args.test:
-        checkpoint = torch.load(args.resume, map_location=args.device)
+        checkpoint = torch.load(args.resume, map_location='cuda')
         model.load_state_dict(checkpoint['model'])
         
         tip = test_img_preparation()
